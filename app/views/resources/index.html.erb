@@ -1,0 +1,29 @@
+<h1>Listing resources</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Host</th>
+    <th>Url</th>
+    <th>Domain</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @resources.each do |resource| %>
+  <tr>
+    <td><%= resource.title %></td>
+    <td><%= resource.host %></td>
+    <td><%= resource.url %></td>
+    <td><%= resource.domain %></td>
+    <td><%= link_to 'Show', resource %></td>
+    <td><%= link_to 'Edit', edit_resource_path(resource) %></td>
+    <td><%= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Resource', new_resource_path %>
