@@ -1,24 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @resource.title %>
-</p>
+<% @resource.attributes.each do |key, value| %>
+  <% unless key == "_id" %>
+    <p>
+      <b><%= key %></b>
+      <%= value %>
+    </p>
+  <% end %>
+<% end %>
 
-<p>
-  <b>Host:</b>
-  <%= @resource.host %>
-</p>
-
-<p>
-  <b>Url:</b>
-  <%= @resource.url %>
-</p>
-
-<p>
-  <b>Domain:</b>
-  <%= @resource.domain %>
-</p>
 
 
 <%= link_to 'Edit', edit_resource_path(@resource) %> |

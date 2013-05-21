@@ -11,22 +11,14 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :host %><br />
-    <%= f.text_field :host %>
-  </div>
-  <div class="field">
-    <%= f.label :url %><br />
-    <%= f.text_field :url %>
-  </div>
-  <div class="field">
-    <%= f.label :domain %><br />
-    <%= f.text_field :domain %>
-  </div>
+  <% @resource.attributes.keys.each do |field| %>
+    <% unless field == "_id" %>
+      <div class="field">
+        <%= f.label field %><br />
+        <%= f.text_field field %>
+      </div>
+    <% end %>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

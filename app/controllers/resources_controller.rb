@@ -24,7 +24,7 @@ class ResourcesController < ApplicationController
   # GET /resources/new
   # GET /resources/new.json
   def new
-    @resource = Resource.new
+    @resource = Resource.new(title: "", host: "", url: "", domain: "")
 
     respond_to do |format|
       format.html # new.html.erb
