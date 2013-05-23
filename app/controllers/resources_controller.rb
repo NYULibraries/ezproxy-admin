@@ -34,9 +34,10 @@ class ResourcesController < ApplicationController
 
   def update
     @resource = Resource.find(params[:id])
+    normalized_params = Resource.normalize_additional_fields(params[:resource])
 
     respond_to do |format|
-      if @resource.update_attributes(params[:resource])
+      if @resource.update_attributes(normalized_params)
         format.html { redirect_to @resource, notice: 'Resource was successfully updated.' }
         format.json { head :no_content }
       else
