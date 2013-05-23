@@ -1,46 +1,25 @@
 class ResourcesController < ApplicationController
-  # GET /resources
-  # GET /resources.json
+  respond_to :html, :json
+
   def index
-    @resources = Resource.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @resources }
-    end
+    respond_with( @resources = Resource.all )
   end
 
-  # GET /resources/1
-  # GET /resources/1.json
   def show
-    @resource = Resource.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @resource }
-    end
+    respond_with( @resource = Resource.find(params[:id]) )
   end
 
-  # GET /resources/new
-  # GET /resources/new.json
   def new
-    @resource = Resource.new(title: "", host: "", url: "", domain: "")
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @resource }
-    end
+    respond_with( @resource = Resource.new(title: "", host: "", url: "", domain: "") )
   end
 
-  # GET /resources/1/edit
   def edit
-    @resource = Resource.find(params[:id])
+    respond_with( @resource = Resource.find(params[:id]) )
   end
 
-  # POST /resources
-  # POST /resources.json
   def create
-    @resource = Resource.new(params[:resource])
+    normalized_params = Resource.normalize_additional_fields(params[:resource])
+    @resource = Resource.new(normalized_params)
 
     respond_to do |format|
       if @resource.save
@@ -53,8 +32,6 @@ class ResourcesController < ApplicationController
     end
   end
 
-  # PUT /resources/1
-  # PUT /resources/1.json
   def update
     @resource = Resource.find(params[:id])
 
@@ -69,8 +46,6 @@ class ResourcesController < ApplicationController
     end
   end
 
-  # DELETE /resources/1
-  # DELETE /resources/1.json
   def destroy
     @resource = Resource.find(params[:id])
     @resource.destroy
