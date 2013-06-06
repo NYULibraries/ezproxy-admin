@@ -20,10 +20,11 @@
     <% end %>
   <% end %>
 
-  <div class="field">
-    <label for="resource_column_name">Other</label><br />
-    <input id="resource_column_name" name="resource[column_name]" size="5" />
-    <input id="resource_column_value" name="resource[column_value]" size="19" />
+  <p>Other</p>
+  <div class="field" id="other">
+    <input id="resource_column_name" name="resource[dynamic_field][][name]" size="5" />
+    <input id="resource_column_value" name="resource[dynamic_field][][value]" size="19" />
+    <a href="#" class="add_field">Add</a>
   </div>
 
   <div class="actions">
