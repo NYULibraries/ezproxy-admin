@@ -60,7 +60,15 @@ class ResourcesController < ApplicationController
   def delete_optional_attribute
     @resource = Resource.find(params[:id])
     @resource.remove_attribute(params[:optional])
-    @resource.save
-    redirect_to @resource, notice: 'Attribute was successfully removed.'
+
+    respond_to do |format|
+      if @resource.save
+        format.html { redirect_to edit_resource_path(@resource), notice: 'Attribute was successfully removed.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @resource.errors, status: :unprocessable_entity }
+      end
+    end
   end
 end
