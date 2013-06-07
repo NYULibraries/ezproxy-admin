@@ -1,5 +1,9 @@
 EzproxyFrontend::Application.routes.draw do
-  resources :resources
+  resources :resources do
+    member do
+      delete '/:optional', to: :delete_optional_attribute
+    end
+  end
 
 
   # The priority is based upon order of creation:

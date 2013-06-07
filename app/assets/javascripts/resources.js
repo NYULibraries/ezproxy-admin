@@ -13,8 +13,4 @@ $(document).ready(function() {
     $('.field').last().after(dynamic_resource_field);
   });
   
-  $("body").on("click", ".remove_field", function(){
-    $(this).parent().remove();
-  });
-
 });

@@ -56,4 +56,11 @@ class ResourcesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def delete_optional_attribute
+    @resource = Resource.find(params[:id])
+    @resource.remove_attribute(params[:optional])
+    @resource.save
+    redirect_to @resource, notice: 'Attribute was successfully removed.'
+  end
 end
