@@ -1,11 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<% @resource.attributes.each do |key, value| %>
+<% @resource.attributes.each do |key, values| %>
   <% unless key == "_id" %>
-    <p>
-      <b><%= key %></b>
-      <%= value %>
-    </p>
+      <% if values.respond_to? :each %>
+        <% values.each do |value| %>
+          <p><strong><%= key %></strong> <%= value %></p>
+        <% end %>
+      <% else %>
+        <p><strong><%= key %></strong> <%= values %></p>
+      <% end %>
   <% end %>
 <% end %>
 
