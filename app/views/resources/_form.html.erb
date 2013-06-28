@@ -13,13 +13,20 @@
     </div>
   <% end %>
 
-  <% @resource.attributes.keys.each do |field| %>
-    <% unless field == "_id" %>
+  <% @resource.attributes.each do |key, value| %>
+    <% unless key == "_id" %>
       <div class="field">
-        <%= f.label field %><br />
-        <%= f.text_field field %>
-        <% if !%w[ title host url domain ].include? field %>
-          <%= link_to "Remove", field, :confirm => "Are you sure you want to remove #{field}?", :method => :delete, :class => "remove_field" %>
+        <% if value.respond_to? :each %>
+          <%= f.label key %><br />
+          <% value.each do |x| %>
+            <%= f.text_field key, value: x %><br />
+          <% end %>
+        <% else %>
+          <%= f.label key %><br />
+          <%= f.text_field key, value: value %>
+        <% end %>
+        <% if !%w[ title host url domain ].include? key %>
+          <%= link_to "Remove", key, :confirm => "Are you sure you want to remove #{key}?", :method => :delete, :class => "remove_field" %>
         <% end %>
       </div>
     <% end %>
